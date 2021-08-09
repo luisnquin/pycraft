@@ -1,16 +1,26 @@
 from ursina import *
+from ursina.prefabs.first_person_controller import FirstPersonController
 
 
-def update():
-    if held_keys["a"]:
-        squareone.x -= .1 * time.dt
+class Voxel(Button):
+    def __init__(self, position=(0, 0, 0)):
+        super().__init__(
+            parent=scene,
+            model="cube",
+            position=position,
+            origin_y=0.5,
+            texture="white_cube",
+            color=color.white,
+            hightlight_color=color.lime
+        )
 
 
 app = Ursina()
 
-squareone = Entity(model="quad", color=color.green, scale=(10, 5), position=(5, 0))
+for z in range(10):
+    for x in range(10):
+        voxel1 = Voxel((x, 0, z))
 
-sans_texture = load_texture("")
-sans = Entity(model="quad", texture="")
+player1 = FirstPersonController()
 
 app.run()
