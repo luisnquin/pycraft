@@ -1,16 +1,19 @@
-from ursina import Ursina, Audio, Button, Entity, Vec2, Vec3
 from ursina import held_keys, load_texture, scene, color, random, mouse, destroy, camera
 from ursina.prefabs.first_person_controller import FirstPersonController
+from ursina import Ursina, Audio, Button, Entity, Vec2, Vec3
+
 
 app = Ursina()
 
+punch_sound = Audio("assets/punch_sound", loop=False, autoplay=False)
+
 grass_texture = load_texture("assets/grass_texture.png")
-dirt_texture = load_texture("assets/dirt_texture.png")
 stone_texture = load_texture("assets/stone_texture.png")
 brick_texture = load_texture("assets/brick_texture.png")
 sky_texture = load_texture("assets/skybox_texture.png")
+dirt_texture = load_texture("assets/dirt_texture.png")
 arm_texture = load_texture("assets/arm_texture.png")
-punch_sound = Audio("assets/punch_sound", loop=False, autoplay=False)
+
 
 block_pick = 1
 
@@ -95,8 +98,8 @@ class Hand(Entity):
         self.position = Vec2(0.4, -0.6)
 
 
-for z in range(3):
-    for x in range(3):
+for z in range(10):
+    for x in range(10):
         voxel1 = Voxel((x, 0, z))
         voxel2 = Voxel((x, -1, z)).texture = dirt_texture
         voxel4 = Voxel((x, -2, z)).texture = stone_texture
